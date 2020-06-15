@@ -57,21 +57,23 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-
+    <script src="./libs/http.js"></script>
     <script>
         $(document).ready(function() {
 
-            function Space() {
+            // function Space() {
 
-                $('body').on('keydown', function(e) {
-                    if (e.keycode == 13) {
-                        console.log(12345);
+            //     document.body.onkeydown = function(e) {
+            //         if (e.keycode == 13) {
+            //             console.log(12345);
 
-                    }
-                })
+            //         }
 
-            }
-            Space()
+            //     }
+
+
+            // }
+            // Space()
             $('.input_sub').on('click', function(e) {
                 e.preventDefault();
                 var username = $('.input_txt').val().trim();
@@ -84,7 +86,8 @@
 
                 $.ajax({
                     type: 'post',
-                    url: "http://localhost:8080/api/v1/admin/user/login",
+                    // url: "http://localhost:8080/api/v1/admin/user/login",
+                    url: BigNew.user_login,
                     data: {
                         username: username,
                         password: password
@@ -98,6 +101,10 @@
                             $('#myModal').modal();
                             $('.modal-body>p').text('登录成功,正在跳转...')
 
+                            setInterval(function() {
+                                window.location.href = './index.html';
+
+                            }, 3000)
                             $('#myModal').on('hide.bs.modal	', function() {
                                 window.location.href = './index.html';
 
