@@ -31,6 +31,7 @@
                 </a>
             </div>
             <div class="level01">
+                <!-- target="main_frame" -->
                 <a href="#"><i class="iconfont icon-icon-article"></i><span>文章管理</span><b class="iconfont icon-arrowdownl"></b>
                     </a></div>
             <ul class="level02">
@@ -67,14 +68,14 @@
     <script src="./libs/http.js"></script>
 
     <script>
-        $('.level01').on("click", function() {
-            $(this).addClass('active').siblings().removeClass('active')
+        // $('.level01').on("click", function() {
+        //     $(this).addClass('active').siblings().removeClass('active')
 
-        });
-        $('.level01:eq(1)').on('click', function() {
-            // console.log(111);
-            $('ul.level02').toggle()
-        });
+        // });
+        // $('.level01:eq(1)').on('click', function() {
+        //     // console.log(111);
+        //     $('ul.level02').toggle()
+        // });
 
 
 
@@ -100,6 +101,39 @@
                 window.location.href = './login.html'
 
             }
+
+        })
+
+        // 三: 左侧导航栏一级菜单(div)点击事件
+        $('div.level01').on('click', function() {
+            //    3.1 当点击的一级菜单添加一个active类名
+            $(this).addClass('active').siblings('div').removeClass('active')
+
+            // 3.2 判断一下当前的一级菜单是否是 文章管理
+            if ($(this).index() == 1) {
+                // a.让二级菜单显示隐藏
+                $('ul.level02').slideToggle();
+                // b. 让小尖尖旋转起来
+                $(this).find('b').toggleClass('rotate0');
+
+                // a.做法:
+                // $('ul.level02>li').first().triggerHandler('click')
+                // b.做法:
+                $('ul.level02>li:eq(0)>a')[0].click();
+                // 只有 DOM元素的单击事件才会触发超链接, jQuery事件的的点击事件不会触发超链接
+                // 所有要把a标签转换为DOM对象,然后触发单击事件
+                // 触发单击事件,会产生事件冒泡,所有他的父元素也触发了点击事件,所有li标签也触发了点击事件--改变了颜色/
+            }
+        })
+
+        // 四. 左侧导航栏二级菜单(li)点击事件
+        $('ul.level02>li').on('click', function() {
+            // 4.1 当前点击的li标签添加active类名,其他dd兄弟li移出avtive
+            $(this).addClass('active').siblings('li').removeClass('active');
+
+            // 4.2 待解决的需求
+            // 点击一级菜单 ' 文章管理',有一个默认的二级菜单'文章列表'被选中 
+            // 做法有两种
 
         })
     </script>
