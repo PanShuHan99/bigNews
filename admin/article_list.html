@@ -96,7 +96,7 @@
             <td class="text-center">{{v.date}}</td>
             <td class="text-center">{{v.state}}</td>
             <td class="text-center">
-                <a href="article_edit.html" data-id="{{v.id}}" class="btn btn-default btn-xs">编辑</a>
+                <a href="article_edit.html?id={{v.id}}" data-id="{{v.id}}" class="btn btn-default btn-xs">编辑</a>
                 <a href="javascript:void(0);" data-id="{{v.id}}" class="btn btn-danger btn-xs delete">删除</a>
             </td>
         </tr>
@@ -220,6 +220,11 @@
                 // 发送ajax请求完成删除
                 // 删除成功之后,重新加载数据
 
+
+            // 五.点击文章发布跳转到文章发布页面并触发文章发表的点击事件
+            $('#release_btn').on('click', function() {
+                parent.$('ul.level02>li').eq(1).click();
+            })
 
         });
     </script>
